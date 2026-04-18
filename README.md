@@ -4,14 +4,22 @@
 [![version](https://img.shields.io/badge/version-v1.0.0-blue.svg)]()
 [![maintainer](https://img.shields.io/badge/maintainer-Salvatore_Lentini_--_DomHouse.it-green.svg)](https://www.domhouse.it)
 
-Un Custom Component per Home Assistant dedicato agli utenti di **Octopus Energy Italia**. 
-Questa integrazione calcola automaticamente la tua **Baseline dei 10 giorni precedenti** in base alla fascia oraria del "PowerUp", permettendoti di sapere esattamente quanta energia devi consumare per ottenere lo sconto in bolletta.
-
+Un Custom Component avanzato per Home Assistant dedicato agli utenti di **Octopus Energy Italia**. 
+Questa integrazione replica fedelmente l'algoritmo di Octopus per calcolare la tua **Baseline** (Consumo Abituale), permettendoti di massimizzare il risparmio durante gli eventi PowerUp.
+ 
 ## ✨ Caratteristiche
 - ⚙️ **Configurazione UI (Config Flow):** Nessun file YAML da modificare. Si configura tutto dall'interfaccia grafica.
+- 🧠 **Algoritmo Intelligente (Regolamento 2026):** Calcola la media basandosi sui 10 giorni precedenti della **stessa tipologia** (distingue automaticamente tra giorni feriali e fine settimana/festivi).
 - 📊 **Calcolo Dinamico:** Usa il database storico di Home Assistant (`recorder`) per calcolare la media esatta dei consumi nella fascia oraria scelta.
 - 🕒 **Selettori Orario Nativi:** Genera automaticamente le entità `time` per selezionare l'ora di inizio e fine direttamente dalla tua Plancia.
 - 🌞 **Perfetto per il Fotovoltaico e non:** Calcola il delta basandosi esclusivamente sull'energia prelevata dalla rete.
+
+## 🔬 Come funziona il Calcolo
+L'integrazione segue rigorosamente i Termini e Condizioni di Octopus Energy Italia:
+- **Se il PowerUp è Feriale (Lun-Ven):** Il sensore cercherà i 10 giorni feriali precedenti, ignorando i weekend.
+- **Se il PowerUp è Festivo (Sab-Dom):** Il sensore cercherà i 10 giorni festivi precedenti, ignorando i giorni lavorativi.
+
+Questo garantisce che la baseline visualizzata su Home Assistant sia la stessa identica usata da Octopus per calcolare il tuo rimborso in bolletta.
 
 ## 📦 Installazione
 
