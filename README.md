@@ -36,7 +36,7 @@ Dopo aver riavviato Home Assistant:
 2. Clicca su **Aggiungi Integrazione** in basso a destra.
 3. Cerca **Octopus PowerUp Helper**.
 4. Nel menu a tendina, seleziona il tuo sensore di **Prelievo dalla Rete** (es. `sensor.energia_oggi_prelevata`). 
-   *Nota: Deve essere un sensore di energia cumulativo (giornaliero, mensile o totale).*
+   *Nota: Deve essere un sensore di energia cumulativo kwh (giornaliero, mensile o totale).*
 5. Clicca su Invia. Finito!
 
 ## 🕹️ Entità Generate
