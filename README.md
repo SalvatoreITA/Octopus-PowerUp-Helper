@@ -49,7 +49,7 @@ L'integrazione creerà automaticamente 3 entità:
 Puoi aggiungere queste entità a qualsiasi plancia per monitorare la tua strategia durante i PowerUp!
 
 > **💡 Vuoi una grafica dedicata?**
-> Scarica anche la Custom Card frontend ufficiale da HACS: [DomHouse Octopus Powerup Card](https://github.com/tuo_username/domhouse-octopus-powerup-card) *(Sostituisci col link della tua futura repo)*.
+> Scarica anche la Custom Card frontend ufficiale da HACS: [DomHouse Octopus Powerup Card](https://github.com/SalvatoreITA/DomHouse-Octopus-PowerUp-Card)
 
 ## ☕ Supporta il Progetto
 
