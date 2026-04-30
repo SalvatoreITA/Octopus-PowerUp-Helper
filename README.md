@@ -6,6 +6,10 @@
 
 Un Custom Component avanzato per Home Assistant dedicato agli utenti di **Octopus Energy Italia**. 
 Questa integrazione replica fedelmente l'algoritmo di Octopus per calcolare la tua **Baseline** (Consumo Abituale), permettendoti di massimizzare il risparmio durante gli eventi PowerUp.
+
+## 🎁 Sconto Octopus
+
+Se devi attivare un nuovo abbonamento con Octopus Energy puoi usare questo [link](https://octopusenergy.it/octo-friends/quiet-gaur-553): otterrai **uno sconto fino a 50 €**
  
 ## ✨ Caratteristiche
 - ⚙️ **Configurazione UI (Config Flow):** Nessun file YAML da modificare. Si configura tutto dall'interfaccia grafica.
