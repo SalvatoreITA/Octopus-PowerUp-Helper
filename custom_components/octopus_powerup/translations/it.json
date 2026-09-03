@@ -1,0 +1,13 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Impostazioni Octopus PowerUp",
+        "description": "Nel menu a tendina, seleziona il tuo sensore di **Prelievo dalla Rete** (es. `sensor.energia_oggi_prelevata`).\n\n*Nota: Deve essere un sensore di energia cumulativo in kWh (giornaliero, mensile o totale).* ",
+        "data": {
+          "source_sensor": "Sensore di Prelievo Rete"
+        }
+      }
+    }
+  }
+}
