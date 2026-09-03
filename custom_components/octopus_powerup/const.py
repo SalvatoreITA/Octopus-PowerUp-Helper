@@ -1,5 +1,0 @@
-DOMAIN = "octopus_powerup"
-CONF_SOURCE_SENSOR = "source_sensor"
-EVENT_UPDATE_WINDOW = f"{DOMAIN}_update_window"
-ATTR_START_TIME = "start_time"
-ATTR_END_TIME = "end_time"
