@@ -1,7 +1,7 @@
 # 🐙 Octopus PowerUp Helper per Home Assistant
 
 [![hacs_badge](https://img.shields.io/badge/HACS-Custom-orange.svg)](https://github.com/hacs/integration)
-[![version](https://img.shields.io/badge/version-v1.0.0-blue.svg)]()
+[![version](https://img.shields.io/badge/version-v1.0.1-blue.svg)]()
 [![maintainer](https://img.shields.io/badge/maintainer-Salvatore_Lentini_--_DomHouse.it-green.svg)](https://www.domhouse.it)
 
 Un Custom Component avanzato per Home Assistant dedicato agli utenti di **Octopus Energy Italia**. 
@@ -15,15 +15,22 @@ Se devi attivare un nuovo abbonamento con Octopus Energy puoi usare questo [link
 - ⚙️ **Configurazione UI (Config Flow):** Nessun file YAML da modificare. Si configura tutto dall'interfaccia grafica.
 - 🧠 **Algoritmo Intelligente (Regolamento 2026):** Calcola la media basandosi sui 10 giorni precedenti della **stessa tipologia** (distingue automaticamente tra giorni feriali e fine settimana/festivi).
 - 📊 **Calcolo Dinamico:** Usa il database storico di Home Assistant (`recorder`) per calcolare la media esatta dei consumi nella fascia oraria scelta.
-- 🕒 **Selettori Orario Nativi:** Genera automaticamente le entità `time` per selezionare l'ora di inizio e fine direttamente dalla tua Plancia.
-- 🌞 **Perfetto per il Fotovoltaico e non:** Calcola il delta basandosi esclusivamente sull'energia prelevata dalla rete.
+- 📅 **Selettori Data e Orario Nativi:** Genera automaticamente le entità `date` e `time` per programmare il Power Up direttamente dalla tua Plancia, senza toccare il codice.
+- 💾 **Memoria di Ferro (RestoreEntity):** Le date e gli orari che imposti non andranno mai persi, nemmeno se riavvii Home Assistant o in caso di blackout.
+- ⚡ **Sensore "Raccogli Bottino" (Live Tracking):** Crea un sensore dedicato che monitora in tempo reale i kWh consumati *esattamente* durante l'evento, azzerandosi automaticamente quando sei fuori fascia.
+- 🔄 **Ricalcolo Istantaneo:** Modificando gli orari o la data dalla UI, il sistema scatta in tempo reale e ricalcola all'istante la media storica sul database. Perfetto per fare simulazioni e prevedere i tuoi obiettivi!
+- 🌞 **Perfetto per il Fotovoltaico e non:** Calcola i valori basandosi esclusivamente sull'energia prelevata dalla rete.
 
 ## 🔬 Come funziona il Calcolo
 L'integrazione segue rigorosamente i Termini e Condizioni di Octopus Energy Italia:
-- **Se il PowerUp è Feriale (Lun-Ven):** Il sensore cercherà i 10 giorni feriali precedenti, ignorando i weekend.
-- **Se il PowerUp è Festivo (Sab-Dom):** Il sensore cercherà i 10 giorni festivi precedenti, ignorando i giorni lavorativi.
 
+**1. Il Calcolo della tua Media (Baseline):**
+- **Se il Power Up è Feriale (Lun-Ven):** Il sensore cercherà i 10 giorni feriali precedenti, ignorando i weekend.
+- **Se il Power Up è Festivo (Sab-Dom):** Il sensore cercherà i 10 giorni festivi precedenti, ignorando i giorni lavorativi.
 Questo garantisce che la baseline visualizzata su Home Assistant sia la stessa identica usata da Octopus per calcolare il tuo rimborso in bolletta.
+
+**2. Il Calcolo dell'Energia in Regalo (Il Bottino):**
+Durante l'evento, il sistema entra in modalità "Live". Il vero bonus che accumulerai è calcolato matematicamente come la differenza tra il tuo consumo in diretta e la tua baseline storica. Tutto ciò che riuscirai a consumare *sopra* quella soglia ti verrà regalato!
 
 ## 📦 Installazione
 
@@ -53,11 +60,13 @@ Dopo aver riavviato Home Assistant:
 
 ## 🕹️ Entità Generate
 
-L'integrazione creerà automaticamente 3 entità:
-- `sensor.baseline_octopus_10_giorni`: Il sensore che mostra i kWh medi da superare. Si aggiorna all'istante al cambio dell'orario.
-- `time.inizio_powerup`: Selettore per l'ora di inizio della sfida.
-- `time.fine_powerup`: Selettore per l'ora di fine della sfida.
+L'integrazione creerà automaticamente 5 entità per gestire il tuo Power Up:
 
+- 📅 `date.data_powerup`: Selettore per impostare la data in cui si svolgerà la sfida.
+- 🟢 `time.inizio_powerup`: Selettore per l'ora di inizio della sfida.
+- 🔴 `time.fine_powerup`: Selettore per l'ora di fine della sfida.
+- 📊 `sensor.octopus_powerup_baseline_media`: Il sensore che calcola e mostra i kWh medi da superare. Si aggiorna all'istante ogni volta che modifichi la data o gli orari.
+- ⚡ `sensor.octopus_powerup_live_consumption`: Il sensore che monitora il tuo consumo in tempo reale *esclusivamente* durante le ore dell'evento (azzerandosi in automatico quando sei fuori fascia).
 Puoi aggiungere queste entità a qualsiasi plancia per monitorare la tua strategia durante i PowerUp!
 
 > **💡 Vuoi una grafica dedicata?**
